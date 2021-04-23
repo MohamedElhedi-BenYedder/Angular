@@ -1,9 +1,12 @@
 export interface ManualAppointment {
-  appointmentNumber:  Number;
-  doctorRegistrationNumber:Number;
-  patientRegistrationNumber: Number;
-  timeSlot:string;
-  appointmentDate:any;
-  dateCreated:string;
+  appointmentNumber: number;
+  doctorRegistrationNumber: number;
+  patientRegistrationNumber: number;
+  timeSlot:{day: string,
+    startTime: string,
+    endTime: string
+  };
+  appointmentDate: any;
+  dateCreated: string;
 
 }

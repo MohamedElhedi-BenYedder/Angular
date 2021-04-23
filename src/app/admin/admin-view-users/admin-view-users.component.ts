@@ -9,39 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-view-users.component.css']
 })
 export class AdminViewUsersComponent implements OnInit {
+  Users = [];
+  constructor(public adminService: AdminService, private snackBar: MatSnackBar) { }
 
-  constructor(public adminService: AdminService,private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.getSystemUsers()
+    this.getAllUsers() ;
   }
-  systemUsers=[];
-  getSystemUsers(){
-    this.systemUsers=[]
-    this.adminService.getSystemUsers().subscribe(response =>{
-      console.log(response)
-      response.users.map(user =>{
-        if(user.doctor.length==0)
-        {
-          const doc={
-            name:{
-              firstname:"N/A",
-              lastname:"",
-            }
-          }
-
-          user.doctor.push(doc)
-        }
-        if(user.role=="doctor")
-        {
-          user.registrationNumber="DR/"+user.registrationNumber
-        }
-        else {
-          user.registrationNumber="N/A"
+  getAllUsers() {
+    this.Users = [];
+    this.adminService.getAllUsers().subscribe(response => {
+      response.map(user => {
+        if (user.role === 'doctor') {
+          user.registrationNumber = 'DR/' + user.registrationNumber ;
+        } else {
+          user.registrationNumber = 'N/A';
 
         }
-        this.systemUsers.push(user);
-      })
-    })
+        this.Users.push(user);
+      });
+    });
   }
 }

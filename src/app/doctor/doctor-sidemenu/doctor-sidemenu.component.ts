@@ -14,16 +14,11 @@ export class DoctorSidemenuComponent implements OnInit {
   doctorRegNo;
   doctorname;
   ngOnInit() {
-    this.doctorRegNo=this.activate.snapshot.params['id'];
-    console.log(this.doctorRegNo + "Sidemenu");
-    this.doctorService.getDoctorName_SideMenu(this.doctorRegNo).subscribe(response =>{
+    this.doctorRegNo=3;
+    this.doctorService.getDoctorByRegNumber(this.doctorRegNo).subscribe(response =>{
       console.log(response);
-      this.doctorname="Dr. "+ response.DoctorFirstName + " " + response.DoctorLastName;
+      this.doctorname="Dr. "+ response.name.firstName + " " + response.name.lastName;
     })
-
-  }
-
-  getDoctorName(reNo:string){
 
   }
 

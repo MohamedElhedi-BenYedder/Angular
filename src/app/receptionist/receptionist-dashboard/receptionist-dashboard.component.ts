@@ -8,49 +8,50 @@ import { ReceptionistService } from '../receptionist.service';
   styleUrls: ['./receptionist-dashboard.component.css']
 })
 export class ReceptionistDashboardComponent implements OnInit {
-  showMsg: boolean = true;
-  constructor(private snackBar: MatSnackBar,public receptionistService: ReceptionistService) {}
+  showMsg = true;
+  patientsRegistered = 0;
+  doctorsRegistered = 0;
+  appointmentsScheduled = 0;
+  patientAdmissions = 0;
+  roomsAdded = 0;
+  employeesRegistered = 0;
+  constructor(private snackBar: MatSnackBar, public receptionistService: ReceptionistService) {}
 
   click(message: string, action: string) {
-    this.snackBar.open("Error", null, {
+    this.snackBar.open('Error', null, {
       duration: 4000,
       panelClass: ['success']
     });
   }
 
-  patientsRegistered:Number=0;
-  doctorsRegistered:Number=0;
-  appointmentsScheduled:Number=0;
-  patientAdmissions:Number=0;
-  roomsAdded:Number=0;
-  employeesRegistered:Number=0;
+
   ngOnInit() {
-    this.receptionistService.countPatients().subscribe(response =>{
-      this.patientsRegistered=response.count;
+    this.receptionistService.countPatients().subscribe(response => {
+      this.patientsRegistered = Number(response);
     });
 
-    this.receptionistService.countDoctors().subscribe(response =>{
-      this.doctorsRegistered=response.count;
+    this.receptionistService.countDoctors().subscribe(response => {
+      this.doctorsRegistered = Number(response);
     });
 
-    this.receptionistService.countAdmissions().subscribe(response =>{
-      this.patientAdmissions=response.count;
+    this.receptionistService.countAdmissions().subscribe(response => {
+      this.patientAdmissions = Number(response);
     });
 
-    this.receptionistService.countNormalAppointments().subscribe(response =>{
-      this.appointmentsScheduled+=response.count;
+    this.receptionistService.countNormalAppointments().subscribe(response => {
+      this.appointmentsScheduled += Number(response);;
     });
 
-    this.receptionistService.countOnlineAppointments().subscribe(response =>{
-      this.appointmentsScheduled+=response.count;
+    this.receptionistService.countOnlineAppointments().subscribe(response => {
+      this.appointmentsScheduled += Number(response);;
     });
 
-    this.receptionistService.countRooms().subscribe(response =>{
-      this.roomsAdded=response.count;
+    this.receptionistService.countRooms().subscribe(response => {
+      this.roomsAdded = Number(response);
     });
 
-    this.receptionistService.countEmployees().subscribe(response =>{
-      this.employeesRegistered=response.count;
+    this.receptionistService.countEmployees().subscribe(response => {
+      this.employeesRegistered = Number(response);
     });
 
 

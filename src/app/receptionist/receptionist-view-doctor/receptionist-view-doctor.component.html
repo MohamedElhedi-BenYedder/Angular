@@ -1,312 +1,312 @@
 <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
 
-    <div class="border border-secondary divDoctor">
-      <p class="font-weight-bold">Find Doctor</p>
-          <div class="form-group row">
-              <label for="searchBox" class="col-sm-4 col-form-label">Enter Doctor Registration Number</label>
-              <div class="col-sm-5 input-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text col" id="basic-addon3">DR/</span>
-                    </div>
-                <input  #searchBox type="number" class="form-control" id="searchBox" placeholder="Enter Registration No ">
-              </div>
-              <button (click)="searchDoctor(searchBox.value)" type="button" class="btn btn-outline-success">Search</button>
-          </div>
+  <div class="border border-secondary divDoctor">
+    <p class="font-weight-bold">Find Doctor</p>
+    <div class="form-group row">
+      <label for="searchBox" class="col-sm-4 col-form-label">Enter Doctor Registration Number</label>
+      <div class="col-sm-5 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text col" id="basic-addon3">DR/</span>
+        </div>
+        <input  #searchBox type="number" class="form-control" id="searchBox" placeholder="Enter Registration No ">
+      </div>
+      <button (click)="searchDoctor(searchBox.value)" type="button" class="btn btn-outline-success">Search</button>
     </div>
+  </div>
 
 
-    <div *ngIf="showForm" style="padding-top: 20px">
-          <!-- Start - Doctor Information Panel -->
-          <div class="container">
+  <div *ngIf="showForm" style="padding-top: 20px">
+    <!-- Start - Doctor Information Panel -->
+    <div class="container">
 
-          <!-- Start - Doctor Registration Number row -->
-          <div class="form-group row">
-                <label for="doctorRegistrationNumber" class="col-sm-4 col-form-label">Doctor Registration Number:</label>
-              <div class="col-sm-3 input-group">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text col" id="basic-addon3">DR/</span>
-                    </div>
-                <input readonly type="text" class="form-control" id="doctorRegistrationNumber" name="doctorRegistrationNumber" [(ngModel)]="doctor.doctorRegistrationNumber">
-              </div>
+      <!-- Start - Doctor Registration Number row -->
+      <div class="form-group row">
+        <label for="doctorRegistrationNumber" class="col-sm-4 col-form-label">Doctor Registration Number:</label>
+        <div class="col-sm-3 input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text col" id="basic-addon3">DR/</span>
           </div>
-          <!-- End - Doctor Registration Number row -->
+          <input readonly type="text" class="form-control" id="doctorRegistrationNumber" name="doctorRegistrationNumber" [(ngModel)]="doctor.doctorRegistrationNumber">
+        </div>
+      </div>
+      <!-- End - Doctor Registration Number row -->
 
-          <!-- Start - First Name, Last Name, Gender -->
-          <div class="form-row">
+      <!-- Start - First Name, Last Name, Gender -->
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="doctorFirstName">First name</label>
+          <input readonly type="text" class="form-control" id="doctorFirstName" name="doctorFirstName" [(ngModel)]="doctor.name.firstName">
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="doctorLastName">Last name</label>
+          <input type="text" class="form-control" id="doctorLastName" name="doctorLastName" readonly [(ngModel)]="doctor.name.lastName">
+        </div>
+
+        <div class="col-md-4 mb-3" style="padding-left: 27px">
+          <label >Gender</label>
+          <div>
+            <input type="text" class="form-control" id="gender" name="gender" readonly placeholder="" [(ngModel)]="doctor.gender">
+          </div>
+        </div>
+      </div>
+      <!-- End - First Name, Last Name, Gender -->
+
+      <!-- Start - Address, City, District -->
+      <div class="form-row" style="padding-bottom: 10px">
+        <div class="col-md-7 mb-3">
+          <label for="doctorAddress">Address</label>
+          <input readonly type="text" class="form-control" id="doctorAddress" name="doctorAddress" [(ngModel)]="doctor.address">
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="doctorCity">City</label>
+          <input readonly type="text" class="form-control" id="doctorCity" name="doctorCity" [(ngModel)]="doctor.city">
+        </div>
+
+        <div class="col-md-2 mb-3">
+          <label for="doctorDistrict">District</label>
+          <input readonly type="text" class="form-control" id="doctorDistrict" name="doctorDistrict" [(ngModel)]="doctor.district">
+        </div>
+      </div>
+      <!-- End - Address, City, District -->
+
+      <!-- Start - NIC, Date of Birth, Maritall Status-->
+      <div class="form-row">
+        <div class="col-md-4 mb-3" >
+          <label for="doctorNIC">NIC</label>
+          <div>
+            <input readonly type="text" class="form-control" id="doctorNIC" name="doctorNIC" [(ngModel)]="doctor.nic">
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3" style="padding-left: 50px">
+          <label for="dob">Date of Birth</label>
+          <input readonly type="text" class="form-control" id="dob" name="dob" [(ngModel)]="doctor.dob">
+
+        </div>
+
+        <div class="col-md-4 mb-3" style="padding-left: 27px">
+          <label for="maritalStatus">Marital Status</label><br>
+          <input readonly type="text" class="form-control" id="maritalStatus" name="maritalStatus" [(ngModel)]="doctor.maritalStatus">
+
+        </div>
+      </div>
+      <!-- End - NIC, Date of Birth, Maritall Status-->
+
+      <!-- Start - Contact Number, Email, Doctor Type-->
+      <div class="form-row"style="padding-bottom: 10px">
+        <div class="col-md-4 mb-3" >
+          <label for="doctorContactNumber">Contact Number</label>
+          <div style="padding-top: 10px">
+            <input  readonly type="text" class="form-control" id="doctorContactNumber" name="doctorContactNumber" [(ngModel)]="doctor.contactNumber">
+          </div>
+        </div>
+        <div class="col-md-4 mb-3" >
+          <label for="doctorEmail">Email</label>
+          <div style="padding-top: 10px">
+            <input readonly type="text" class="form-control" id="doctorEmail" name="doctorEmail" [(ngModel)]="doctor.email">
+          </div>
+        </div>
+        <div class="col-md-4 mb-3" >
+          <label for="doctorType">Doctor Type</label>
+          <div style="padding-top: 10px">
+            <input readonly type="text" class="form-control" id="doctorType" name="doctorType" [(ngModel)]="doctor.doctorType">
+
+          </div>
+        </div>
+      </div>
+      <!-- End - Contact Number, Email, Doctor Type-->
+
+      <!-- Start - SLMC Reg No-->
+      <div class="form-row">
+        <div class="col-md-8 mb-3" >
+          <label for="slmcRegNo">Sri Lanka Medical Council Registration Number</label>
+          <div style="padding-top: 10px">
+            <input readonly type="text" class="form-control" id="slmcRegNo" name="slmcRegNo" [(ngModel)]="doctor.SLMCRegNo">
+          </div>
+        </div>
+      </div>
+      <!-- End - SLMC Reg No-->
+
+
+      <!-- Start - Primary Qualification Panel -->
+      <div>
+        <p class="font-weight-bold">Primary Qualifications</p>
+
+        <!-- Start - Degree, Year of Graduation -->
+        <div class="form-group row">
+          <div class="col-md-6 mb-3">
+            <label for="primaryDegree">Degree</label>
+            <input readonly type="text" class="form-control" id="primaryDegree" name="primaryDegree"  [(ngModel)]="doctor.primaryQualification.degree">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="primaryYearObtained">Year of Graduation</label>
+            <input readonly type="number" class="form-control" id="primaryYearObtained" name="primaryYearObtained"  [(ngModel)]="doctor.primaryQualification.year">
+          </div>
+        </div>
+        <!-- Start - Degree, Year of Graduation -->
+
+        <!-- Start - Country, University -->
+        <div class="form-group row">
+          <div class="col-md-6 mb-3">
+            <label for="primaryUniversity">University</label>
+            <input readonly type="text" class="form-control" id="primaryUniversity" name="primaryUniversity"  [(ngModel)]="doctor.primaryQualification.university">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="primaryCountry">Country</label>
+            <input readonly type="text" class="form-control" id="primaryCountry" name="primaryCountry"  [(ngModel)]="doctor.primaryQualification.country">
+          </div>
+        </div>
+        <!-- Start - Country, University -->
+      </div>
+      <!-- End - Primary Qualification Panel -->
+
+      <!-- Start - Post Grduate Qualification Panel -->
+      <div class="">
+        <p class="font-weight-bold">Post Graduate Qualifications</p>
+
+        <!-- Start - Degree, Year of Graduation -->
+        <div class="form-group row">
+          <div class="col-md-6 mb-3">
+            <label for="postGradDegree">Degree/Diploma</label>
+            <input readonly type="text" class="form-control" id="postGradDegree" name="postGradDegree" [(ngModel)]="doctor.postGradQualification.degree">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="postGradSpecialization">Specialization Area</label>
+            <input readonly type="text" class="form-control" id="postGradSpecialization" name="postGradSpecialization" [(ngModel)]="doctor.postGradQualification.specialization" >
+          </div>
+        </div>
+        <!-- Start - Degree, Year of Graduation -->
+
+        <!-- Start - Year of Graduation, Country, University -->
+        <div class="form-group row">
           <div class="col-md-4 mb-3">
-            <label for="doctorFirstName">First name</label>
-            <input readonly type="text" class="form-control" id="doctorFirstName" name="doctorFirstName" [(ngModel)]="doctor.name.firstname">
+            <label for="postGradYearObtained">Year of Graduation</label>
+            <input readonly type="number" class="form-control" id="postGradYearObtained" name="postGradYearObtained" [(ngModel)]="doctor.postGradQualification.year" >
           </div>
-
-          <div class="col-md-4 mb-3">
-            <label for="doctorLastName">Last name</label>
-            <input type="text" class="form-control" id="doctorLastName" name="doctorLastName" readonly [(ngModel)]="doctor.name.lastname">
-          </div>
-
-          <div class="col-md-4 mb-3" style="padding-left: 27px">
-            <label >Gender</label>
-            <div>
-              <input type="text" class="form-control" id="gender" name="gender" readonly placeholder="" [(ngModel)]="doctor.gender">
-            </div>
-          </div>
-          </div>
-          <!-- End - First Name, Last Name, Gender -->
-
-          <!-- Start - Address, City, District -->
-          <div class="form-row" style="padding-bottom: 10px">
-          <div class="col-md-7 mb-3">
-            <label for="doctorAddress">Address</label>
-            <input readonly type="text" class="form-control" id="doctorAddress" name="doctorAddress" [(ngModel)]="doctor.address">
+          <div class="col-md-5 mb-3">
+            <label for="postGradUniversity">University</label>
+            <input readonly type="text" class="form-control" id="postGradUniversity" name="postGradUniversity" [(ngModel)]="doctor.postGradQualification.university">
           </div>
           <div class="col-md-3 mb-3">
-              <label for="doctorCity">City</label>
-              <input readonly type="text" class="form-control" id="doctorCity" name="doctorCity" [(ngModel)]="doctor.city">
+            <label for="postGradCountry">Country</label>
+            <input readonly type="text" class="form-control" id="postGradCountry" name="postGradCountry" [(ngModel)]="doctor.postGradQualification.country">
+          </div>
+
+        </div>
+        <!-- Start - Year of Graduation,Country, University -->
+
+
+      </div>
+      <!-- End - Post Graduate Qualification Panel -->
+      <div *ngIf="toggle">
+        <div class="row" style="padding-bottom: 20px">
+          <p class="font-weight-bold col">Doctor Availability</p>
+          <button   (click)="toggleToUpdateDoctorAvailability()" class="btn btn-sm btn-info col-3" style="margin-right: 30px">Update Doctor Availability</button>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let slot of doctorAvailability; index as i">
+                <td>{{slot.day}}</td>
+                <td>{{slot.startTime}}</td>
+                <td>{{slot.endTime}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!toggle" class="border border-dark" style="padding: 10px 25px 10px 10px">
+        <div class="row" style="padding-bottom: 20px">
+          <p class="font-weight-bold col">Update Doctor Availability</p>
+          <button (click)="toggleToViewDoctorAvailability()" class="btn btn-sm btn-info col-1">Back</button>
+        </div>
+        <div class="row">
+          <div class="col-md-5 mb-3" style="padding-right: 50px; padding-left: 40px">
+            <div class="form-group row">
+              <label for="day">Choose day</label>
+              <select  [(ngModel)]="day" class="custom-select" id="day" name="day">
+                <option value="">Choose...</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+              </select>
             </div>
-
-            <div class="col-md-2 mb-3">
-              <label for="doctorDistrict">District</label>
-              <input readonly type="text" class="form-control" id="doctorDistrict" name="doctorDistrict" [(ngModel)]="doctor.district">
+            <div class="form-group row">
+              <label for="startTime">Start Time</label>
+              <select [(ngModel)]="startTime" class="custom-select" id="startTime" name="startTime" >
+                <option value="">Choose...</option>
+                <option value="8.00 AM">8.00 AM</option>
+                <option value="9.00 AM">9.00 AM</option>
+                <option value="10.00 AM">10.00 AM</option>
+                <option value="11.00 AM">11.00 AM</option>
+                <option value="12.00 PM">12.00 PM</option>
+                <option value="1.00 PM">1.00 PM</option>
+                <option value="2.00 PM">2.00 PM</option>
+                <option value="3.00 PM">3.00 PM</option>
+                <option value="4.00 PM">4.00 PM</option>
+                <option value="5.00 PM">5.00 PM</option>
+                <option value="6.00 PM">6.00 PM</option>
+                <option value="7.00 PM">7.00 PM</option>
+              </select>
             </div>
-          </div>
-          <!-- End - Address, City, District -->
-
-          <!-- Start - NIC, Date of Birth, Maritall Status-->
-          <div class="form-row">
-          <div class="col-md-4 mb-3" >
-              <label for="doctorNIC">NIC</label>
-              <div>
-                <input readonly type="text" class="form-control" id="doctorNIC" name="doctorNIC" [(ngModel)]="doctor.nic">
-              </div>
-          </div>
-
-            <div class="col-md-4 mb-3" style="padding-left: 50px">
-                  <label for="dob">Date of Birth</label>
-                  <input readonly type="text" class="form-control" id="dob" name="dob" [(ngModel)]="doctor.dob">
-
-          </div>
-
-          <div class="col-md-4 mb-3" style="padding-left: 27px">
-            <label for="maritalStatus">Marital Status</label><br>
-            <input readonly type="text" class="form-control" id="maritalStatus" name="maritalStatus" [(ngModel)]="doctor.maritalStatus">
-
-          </div>
-          </div>
-          <!-- End - NIC, Date of Birth, Maritall Status-->
-
-          <!-- Start - Contact Number, Email, Doctor Type-->
-          <div class="form-row"style="padding-bottom: 10px">
-            <div class="col-md-4 mb-3" >
-                <label for="doctorContactNumber">Contact Number</label>
-                <div style="padding-top: 10px">
-                    <input  readonly type="text" class="form-control" id="doctorContactNumber" name="doctorContactNumber" [(ngModel)]="doctor.contactNumber">
-                </div>
+            <div class="form-group row">
+              <label for="endTime">End Time</label>
+              <select [(ngModel)]="endTime" class="custom-select" id="endTime" name="endTime" >
+                <option value="">Choose...</option>
+                <option value="8.00 AM">8.00 AM</option>
+                <option value="9.00 AM">9.00 AM</option>
+                <option value="10.00 AM">10.00 AM</option>
+                <option value="11.00 AM">11.00 AM</option>
+                <option value="12.00 PM">12.00 PM</option>
+                <option value="1.00 PM">1.00 PM</option>
+                <option value="2.00 PM">2.00 PM</option>
+                <option value="3.00 PM">3.00 PM</option>
+                <option value="4.00 PM">4.00 PM</option>
+                <option value="5.00 PM">5.00 PM</option>
+                <option value="6.00 PM">6.00 PM</option>
+                <option value="7.00 PM">7.00 PM</option>
+                <option value="8.00 PM">8.00 PM</option>
+                <option value="9.00 PM">9.00 PM</option>
+              </select>
             </div>
-            <div class="col-md-4 mb-3" >
-                <label for="doctorEmail">Email</label>
-                <div style="padding-top: 10px">
-                    <input readonly type="text" class="form-control" id="doctorEmail" name="doctorEmail" [(ngModel)]="doctor.email">
-                </div>
-            </div>
-            <div class="col-md-4 mb-3" >
-                <label for="doctorType">Doctor Type</label>
-                <div style="padding-top: 10px">
-                  <input readonly type="text" class="form-control" id="doctorType" name="doctorType" [(ngModel)]="doctor.doctorType">
-
-                </div>
-            </div>
-          </div>
-          <!-- End - Contact Number, Email, Doctor Type-->
-
-          <!-- Start - SLMC Reg No-->
-          <div class="form-row">
-            <div class="col-md-8 mb-3" >
-                <label for="slmcRegNo">Sri Lanka Medical Council Registration Number</label>
-                <div style="padding-top: 10px">
-                    <input readonly type="text" class="form-control" id="slmcRegNo" name="slmcRegNo" [(ngModel)]="doctor.SLMCRegNo">
-                </div>
-            </div>
-          </div>
-          <!-- End - SLMC Reg No-->
-
-
-          <!-- Start - Primary Qualification Panel -->
-          <div>
-              <p class="font-weight-bold">Primary Qualifications</p>
-
-              <!-- Start - Degree, Year of Graduation -->
-              <div class="form-group row">
-                  <div class="col-md-6 mb-3">
-                      <label for="primaryDegree">Degree</label>
-                      <input readonly type="text" class="form-control" id="primaryDegree" name="primaryDegree"  [(ngModel)]="doctor.primaryQualification.degree">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="primaryYearObtained">Year of Graduation</label>
-                        <input readonly type="number" class="form-control" id="primaryYearObtained" name="primaryYearObtained"  [(ngModel)]="doctor.primaryQualification.year">
-                      </div>
-              </div>
-              <!-- Start - Degree, Year of Graduation -->
-
-              <!-- Start - Country, University -->
-              <div class="form-group row">
-                  <div class="col-md-6 mb-3">
-                      <label for="primaryUniversity">University</label>
-                      <input readonly type="text" class="form-control" id="primaryUniversity" name="primaryUniversity"  [(ngModel)]="doctor.primaryQualification.university">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="primaryCountry">Country</label>
-                        <input readonly type="text" class="form-control" id="primaryCountry" name="primaryCountry"  [(ngModel)]="doctor.primaryQualification.country">
-                      </div>
-              </div>
-              <!-- Start - Country, University -->
-          </div>
-          <!-- End - Primary Qualification Panel -->
-
-          <!-- Start - Post Grduate Qualification Panel -->
-          <div class="">
-              <p class="font-weight-bold">Post Graduate Qualifications</p>
-
-              <!-- Start - Degree, Year of Graduation -->
-              <div class="form-group row">
-                  <div class="col-md-6 mb-3">
-                      <label for="postGradDegree">Degree/Diploma</label>
-                      <input readonly type="text" class="form-control" id="postGradDegree" name="postGradDegree" [(ngModel)]="doctor.postGradQualification.degree">
-                  </div>
-                  <div class="col-md-6 mb-3">
-                      <label for="postGradSpecialization">Specialization Area</label>
-                      <input readonly type="text" class="form-control" id="postGradSpecialization" name="postGradSpecialization" [(ngModel)]="doctor.postGradQualification.specialization" >
-                  </div>
-              </div>
-              <!-- Start - Degree, Year of Graduation -->
-
-              <!-- Start - Year of Graduation, Country, University -->
-              <div class="form-group row">
-                    <div class="col-md-4 mb-3">
-                        <label for="postGradYearObtained">Year of Graduation</label>
-                        <input readonly type="number" class="form-control" id="postGradYearObtained" name="postGradYearObtained" [(ngModel)]="doctor.postGradQualification.year" >
-                    </div>
-                    <div class="col-md-5 mb-3">
-                        <label for="postGradUniversity">University</label>
-                        <input readonly type="text" class="form-control" id="postGradUniversity" name="postGradUniversity" [(ngModel)]="doctor.postGradQualification.university">
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="postGradCountry">Country</label>
-                        <input readonly type="text" class="form-control" id="postGradCountry" name="postGradCountry" [(ngModel)]="doctor.postGradQualification.country">
-                    </div>
-
-              </div>
-              <!-- Start - Year of Graduation,Country, University -->
-
+            <span (click)="onAddTimeSlot()" class="btn btn-sm btn-dark" style="margin-left: 20px">Add time slot</span>
+            <span (click)="onClearTable()" class="btn btn-sm btn-dark" style="margin-left: 20px">Clear Table</span>
+            <button (click)="updateDoctorAvailability()" style="margin-top: 30px; margin-left: 40px"class="btn btn-success">Update Availability</button>
 
           </div>
-          <!-- End - Post Graduate Qualification Panel -->
-            <div *ngIf="toggle">
-                <div class="row" style="padding-bottom: 20px">
-                    <p class="font-weight-bold col">Doctor Availability</p>
-                    <button   (click)="toggleToUpdateDoctorAvailability()" class="btn btn-sm btn-info col-3" style="margin-right: 30px">Update Doctor Availability</button>
-                  </div>
-                <div class="form-row">
-                  <div class="col">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th scope="col">Day</th>
-                          <th scope="col">From</th>
-                          <th scope="col">To</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                         <tr *ngFor="let slot of doctorAvailability; index as i">
-                           <td>{{slot.day}}</td>
-                          <td>{{slot.startTime}}</td>
-                          <td>{{slot.endTime}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-            </div>
-
-            <div *ngIf="!toggle" class="border border-dark" style="padding: 10px 25px 10px 10px">
-                <div class="row" style="padding-bottom: 20px">
-                  <p class="font-weight-bold col">Update Doctor Availability</p>
-                  <button (click)="toggleToViewDoctorAvailability()" class="btn btn-sm btn-info col-1">Back</button>
-                </div>
-                <div class="row">
-                    <div class="col-md-5 mb-3" style="padding-right: 50px; padding-left: 40px">
-                        <div class="form-group row">
-                            <label for="day">Choose day</label>
-                            <select  [(ngModel)]="day" class="custom-select" id="day" name="day">
-                                <option value="">Choose...</option>
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
-                            </select>
-                          </div>
-                          <div class="form-group row">
-                              <label for="startTime">Start Time</label>
-                              <select [(ngModel)]="startTime" class="custom-select" id="startTime" name="startTime" >
-                                  <option value="">Choose...</option>
-                                  <option value="8.00 AM">8.00 AM</option>
-                                  <option value="9.00 AM">9.00 AM</option>
-                                  <option value="10.00 AM">10.00 AM</option>
-                                  <option value="11.00 AM">11.00 AM</option>
-                                  <option value="12.00 PM">12.00 PM</option>
-                                  <option value="1.00 PM">1.00 PM</option>
-                                  <option value="2.00 PM">2.00 PM</option>
-                                  <option value="3.00 PM">3.00 PM</option>
-                                  <option value="4.00 PM">4.00 PM</option>
-                                  <option value="5.00 PM">5.00 PM</option>
-                                  <option value="6.00 PM">6.00 PM</option>
-                                  <option value="7.00 PM">7.00 PM</option>
-                              </select>
-                            </div>
-                            <div class="form-group row">
-                                <label for="endTime">End Time</label>
-                                <select [(ngModel)]="endTime" class="custom-select" id="endTime" name="endTime" >
-                                  <option value="">Choose...</option>
-                                  <option value="8.00 AM">8.00 AM</option>
-                                  <option value="9.00 AM">9.00 AM</option>
-                                  <option value="10.00 AM">10.00 AM</option>
-                                  <option value="11.00 AM">11.00 AM</option>
-                                  <option value="12.00 PM">12.00 PM</option>
-                                  <option value="1.00 PM">1.00 PM</option>
-                                  <option value="2.00 PM">2.00 PM</option>
-                                  <option value="3.00 PM">3.00 PM</option>
-                                  <option value="4.00 PM">4.00 PM</option>
-                                  <option value="5.00 PM">5.00 PM</option>
-                                  <option value="6.00 PM">6.00 PM</option>
-                                  <option value="7.00 PM">7.00 PM</option>
-                                  <option value="8.00 PM">8.00 PM</option>
-                                  <option value="9.00 PM">9.00 PM</option>
-                                </select>
-                              </div>
-                              <span (click)="onAddTimeSlot()" class="btn btn-sm btn-dark" style="margin-left: 20px">Add time slot</span>
-                              <span (click)="onClearTable()" class="btn btn-sm btn-dark" style="margin-left: 20px">Clear Table</span>
-                              <button (click)="updateDoctorAvailability()" style="margin-top: 30px; margin-left: 40px"class="btn btn-success">Update Availability</button>
-
-                    </div>
 
 
-                    <div class="col-md-7 mb-3 border border-secondary" >
-                        <mat-list role="list">
-                          <mat-list-item role="listitem" *ngFor="let slot of timeSlots">
-                            <h6> {{slot.day}}</h6>
-                            <span style="margin-left: 40px">From {{slot.startTime}}</span>
-                            <span style="margin-left: 40px">To {{slot.endTime}}</span>
-                            <!-- <button class="btn btn-danger btn-sm" style="margin-left: 50px">Remove</button> -->
-                         </mat-list-item>
-                        </mat-list>
-                    </div>
-                </div>
-            </div>
-
+          <div class="col-md-7 mb-3 border border-secondary" >
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let slot of timeSlots">
+                <h6> {{slot.day}}</h6>
+                <span style="margin-left: 40px">From {{slot.startTime}}</span>
+                <span style="margin-left: 40px">To {{slot.endTime}}</span>
+                <!-- <button class="btn btn-danger btn-sm" style="margin-left: 50px">Remove</button> -->
+              </mat-list-item>
+            </mat-list>
           </div>
-          <!-- End - Doctor Information Panel -->
-
+        </div>
+      </div>
 
     </div>
+    <!-- End - Doctor Information Panel -->
+
+
+  </div>
 </cdk-virtual-scroll-viewport>

@@ -1,5 +1,5 @@
 import { MatSnackBar } from '@angular/material';
-import { AdminService } from './../admin.service';
+import { AdminService } from '../admin.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -9,7 +9,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./admin-add-rooms.component.css']
 })
 export class AdminAddRoomsComponent implements OnInit {
-
+  rooms;
+  newRoomNumber;
   constructor(public adminService: AdminService,private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -17,39 +18,40 @@ export class AdminAddRoomsComponent implements OnInit {
     this.getNewRoomNumber();
   }
 
-  rooms;
+
   getRoomAvailability(){
-    this.rooms=[];
+    this.rooms = [];
     this.adminService.getRoomAvailability().subscribe(results => {
-      results.rooms.map(room =>{
+      results.rooms.map(room => {
         this.rooms.push(room);
       });
     });
   }
-  newRoomNumber;
+
   getNewRoomNumber(){
-    this.adminService.getNewRoomNumber().subscribe(response =>{
-      this.newRoomNumber=response.roomNumber;
+    this.adminService.getNewRoomNumber().subscribe(roomNumber =>{
+      this.newRoomNumber = Number(roomNumber);
     });
   }
 
   onAddRoom(form:NgForm){
 
-    if(form.invalid==true){
+    if(form.invalid) {
       this.snackBar.open("Enter Valid Data","Ok");
+    } else {
+      const room= {
+        roomNumber: this.newRoomNumber,
+        type: form.value.type
+      }
+      this.adminService.addRoom(room).subscribe(response =>{
+        this.snackBar.open('Room Added Successfully',"Ok");
+        this.getNewRoomNumber();
+        this.getRoomAvailability();
+        form.reset();
+
+      });
     }
 
-    const room={
-      roomNumber:this.newRoomNumber,
-      type:form.value.type
-    }
 
-    this.adminService.addRoom(room).subscribe(response =>{
-      this.snackBar.open("Room Added Successfully","Ok");
-      this.getNewRoomNumber();
-      this.getRoomAvailability();
-      form.reset();
-
-    });
   }
 }

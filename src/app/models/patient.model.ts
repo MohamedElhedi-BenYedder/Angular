@@ -1,8 +1,8 @@
 export interface Patient{
   patientRegistrationNumber:  string;
   name:{
-  firstname:string;
-  lastname:string;
+  firstName:string;
+  lastName:string;
   },
   gender:string;
   dob:any;
@@ -11,14 +11,14 @@ export interface Patient{
   district:string;
   nic:string;
   maritalStatus:string;
-  contactNumber:Number;
+  contactNumber:number;
   email:string;
   guardian:{
     guardianType:string;
-    firstname:string;
-    lastname:string;
+    firstName:string;
+    lastName:string;
     gender:string;
     NIC:string;
-    contactNumber: Number;
+    contactNumber: number;
   }
 }

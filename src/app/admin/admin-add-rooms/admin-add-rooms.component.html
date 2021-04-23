@@ -3,9 +3,9 @@
 
     <!-- Start Admit Patient -->
 
-      <div class="col-sm-6 border border-secondary" style="padding-top: 10px">
-        <p class="font-weight-bold">Add New Rooms</p>
-        <form (submit)="onAddRoom(form)" #form=ngForm>
+    <div class="col-sm-6 border border-secondary" style="padding-top: 10px">
+      <p class="font-weight-bold">Add New Rooms</p>
+      <form (submit)="onAddRoom(form)" #form=ngForm>
         <div class="form-group row">
           <label for="roomNumber" class="col-sm-4 col-form-label">Room Number </label>
           <div class="col-sm-2">
@@ -23,36 +23,36 @@
 
         <div class="form-group row" style="margin-left: 170px; margin-top: 40px; ">
           <button type="submit" class="btn btn-success">Add Room<i class="fa fa-plus-circle" style="padding-left: 13px"></i></button>
-      </div>
-     </form>
+        </div>
+      </form>
 
-      </div>
+    </div>
 
-     <!-- End Admit Patient -->
+    <!-- End Admit Patient -->
 
-     <!-- Start Room Availability -->
-      <div class="col-6 border border-secondary" style="padding-top: 10px">
-          <p class="font-weight-bold">Current Rooms</p>
-          <div class="form-group row">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Room Number</th>
-                    <th scope="col">Room Type</th>
-                    <th scope="col">Availability</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let room of rooms">
-                    <td>{{room.roomNumber}}</td>
-                    <td>{{room.type}}</td>
-                    <td>{{room.status}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+    <!-- Start Room Availability -->
+    <div class="col-6 border border-secondary" style="padding-top: 10px">
+      <p class="font-weight-bold">Current Rooms</p>
+      <div class="form-group row">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Room Number</th>
+            <th scope="col">Room Type</th>
+            <th scope="col">Availability</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let room of rooms">
+            <td>{{room.roomNumber}}</td>
+            <td>{{room.type}}</td>
+            <td>{{room.status}}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <!-- End Room Availability -->
+    </div>
+    <!-- End Room Availability -->
 
   </div>
 </div>

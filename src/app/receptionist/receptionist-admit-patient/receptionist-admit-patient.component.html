@@ -1,317 +1,317 @@
 <div >
-    <mat-tab-group (selectedTabChange)="onClickDischarge($event.index)" mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-     <!-- Start Admit Patient Tab -->
-      <mat-tab label="Admit Patient">
-          <div class="container" style="padding-top: 5px">
-              <div class="row">
+  <mat-tab-group (selectedTabChange)="onClickDischarge($event.index)" mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+    <!-- Start Admit Patient Tab -->
+    <mat-tab label="Admit Patient">
+      <div class="container" style="padding-top: 5px">
+        <div class="row">
 
-                <!-- Start Admit Patient -->
+          <!-- Start Admit Patient -->
 
-                    <div class="col-sm-7 border border-secondary" style="padding-top: 10px">
-                    <form (submit)="onPatientAdmission(patientAdmissionForm)" #patientAdmissionForm="ngForm">
-                        <p class="font-weight-bold">Admit Patient</p>
-                      <div class="form-group row">
-                          <label for="admissionNumber" class="col-sm-6 col-form-label">Admission Number</label>
-                          <div class="col-sm-6">
-                            <input  type="text" ngModel #admissionNumber="ngModel" style="font-weight:bold" class="form-control-plaintext" id="admissionNumber" name="admissionNumber" readonly [(ngModel)]="admissionNum">
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <label for="patientRegistrationNumber" class="col-sm-4 col-form-label">Patient Reg. No</label>
-                          <div class="col-sm-8 input-group">
-                              <div class="input-group-prepend">
-                                  <span class="input-group-text col" id="basic-addon3">PAT/</span>
-                                </div>
-                            <input (keyup)="onSearchPatient($event)" type="number" ngModel #patientRegistrationNumber="ngModel" class="form-control col" id="patientRegistrationNumber"  name="patientRegistrationNumber" placeholder="Enter Patient Registration Number" required>
-                          </div>
-                          <div  style="margin-bottom: 0px; margin-left: 204px"class="alert alert-danger" *ngIf="!patientRegistrationNumber.valid && patientRegistrationNumber.touched && !patientName.valid">Enter Valid Registration Number</div>
-                      </div>
-
-                      <div class="form-group row">
-                          <label for="patientName" class="col-sm-4 col-form-label">Patient Name</label>
-                          <div class="col-sm-8">
-                            <input type="text" ngModel #patientName="ngModel" class="form-control" id="patientName" name="patientName" readonly placeholder="" [(ngModel)]="name" required>
-                            <div style="margin-bottom: -10px" class="alert alert-danger" *ngIf="!patientName.valid && patientRegistrationNumber.touched">Invalid Patient</div>
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                          <label for="selectAppointmentNumber" class="col-sm-4 col-form-label">Select Appointment No. (If any)</label>
-                          <div class="col-sm-4" style="padding-top: 20px">
-                              <!-- <select ngModel #selectAppointmentNumber="ngModel"class="custom-select" name="selectAppointmentNumber" id="selectAppointmentNumber">
-                                  <option value="">Choose...</option>
-                              </select> -->
-                              <mat-radio-group ngModel #appointmentType="ngModel" name="appointmentType">
-                                <mat-radio-button value="APP/">APP</mat-radio-button>
-                                <mat-radio-button value="eAPP/">eAPP</mat-radio-button>
-                             </mat-radio-group>
-                          </div>
-                          <div class="col-sm-3" style="padding-top: 15px">
-                            <input type="number" ngModel #appointmentNumber="ngModel" class="form-control" id="appointmentNumber" name="appointmentNumber">
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                          <label for="selectAdmissionDate" class="col-sm-4 col-form-label" style="padding-top: 5px">Date of Admission</label>
-                          <div class="col-sm-8">
-                              <mat-form-field >
-                                  <input matInput ngModel #selectAdmissionDate="ngModel" name="selectAdmissionDate"[min]="" [max]="" [matDatepicker]="picker" placeholder="Choose admission date" required>
-                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                  <mat-datepicker #picker></mat-datepicker>
-                              </mat-form-field>
-                              <div class="alert alert-danger" *ngIf="!selectAdmissionDate.valid && selectAdmissionDate.touched">Select date</div>
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                          <label for="selecRoom" class="col-sm-4 col-form-label">Select Room</label>
-                          <div class="col-sm-8">
-                              <select ngModel #selecRoom="ngModel"class="custom-select" name="selecRoom" id="selecRoom" required>
-                                  <option value="">Choose...</option>
-                                  <option *ngFor="let room of vacantRooms" value="{{room.roomNumber}}">Room {{room.roomNumber}}</option>
-
-                              </select>
-                              <div class="alert alert-danger" *ngIf="!selecRoom.valid && selecRoom.touched">Select a room</div>
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                          <label for="causeOfAdmission" class="col-sm-4 col-form-label">Cause of Admission</label>
-                          <div class="col-sm-8">
-                            <input type="text" ngModel #causeOfAdmission="ngModel" class="form-control" id="causeOfAdmission"  name="causeOfAdmission" placeholder="Enter cause" required>
-                            <div class="alert alert-danger" *ngIf="!causeOfAdmission.valid && causeOfAdmission.touched">Invalid</div>
-                          </div>
-                      </div>
-
-
-                      <div class="form-group row" style="margin-left: 150px; margin-top: 0px;">
-                          <button type="submit" class="btn btn-success">Admit Patient</button>
-                      </div>
-                  </form>
-                  </div>
-
-                 <!-- End Admit Patient -->
-
-                 <!-- Start Room Availability -->
-                  <div class="col-sm border border-secondary" style="padding-top: 10px">
-                      <p class="font-weight-bold">Room Availability</p>
-                      <div class="form-group row">
-                          <table class="table table-striped">
-                            <thead>
-                              <tr>
-                                <th scope="col">Room Number</th>
-                                <th scope="col">Room Type</th>
-                                <th scope="col">Availability</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let room of rooms">
-                                <td>{{room.roomNumber}}</td>
-                                <td>{{room.type}}</td>
-                                <td>{{room.status}}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                  </div>
-                  <!-- End Room Availability -->
-
-              </div>
-          </div>
-      </mat-tab>
-     <!-- End Admit Patient Tab -->
-
-     <!-- Start Discharge Patient Tab -->
-      <mat-tab label="Discharge Patients" >
-        <div class="container" style="padding-top: 5px">
-          <div class="row">
-
-            <!-- Start Discharge Patient -->
-
-                <div class="col-sm-6 border border-secondary" style="padding-top: 10px">
-                <form>
-                    <p class="font-weight-bold">Discharge Patients</p>
-                  <div class="form-group row border border-secondary" style="margin-left: 10px; padding-right:10px; margin-right: 10px; padding-top: 10px; padding-bottom: 10px">
-                      <label for="searchAdmissionNumber" class="col-sm-5 col-form-label">Enter Admission No.</label>
-                      <div class="col-sm-5 input-group mb-3">
-                          <div class="input-group-prepend">
-                              <span class="input-group-text col" id="basic-addon3">ADM/</span>
-                            </div>
-                        <input  #searchBox type="number" class="form-control" id="searchAdmissionNumber" name="searchAdmissionNumber" required>
-                      </div>
-                      <button (click)="searchAdmission(searchBox.value)" type="button" class="btn btn-sm btn-outline-success col-2" style="padding-top: 5px;">Search</button>
-                  </div>
-
-                  <div class="form-group row">
-                    <label for="admissionNumber" class="col-sm-5 col-form-label">Admission No</label>
-                    <div class="col-sm-7">
-                      <input readonly  type="text" class="form-control" id="admissionNumber"  name="admissionNumber" [(ngModel)]="searchedAdmission.admissionNumber">
-                    </div>
+          <div class="col-sm-7 border border-secondary" style="padding-top: 10px">
+            <form (submit)="onPatientAdmission(patientAdmissionForm)" #patientAdmissionForm="ngForm">
+              <p class="font-weight-bold">Admit Patient</p>
+              <div class="form-group row">
+                <label for="admissionNumber" class="col-sm-6 col-form-label">Admission Number</label>
+                <div class="col-sm-6">
+                  <input  type="text" ngModel #admissionNumber="ngModel" style="font-weight:bold" class="form-control-plaintext" id="admissionNumber" name="admissionNumber" readonly [(ngModel)]="admissionNum">
                 </div>
-
-                  <div class="form-group row">
-                      <label for="patientRegistrationNumber" class="col-sm-5 col-form-label">Patient Reg. No</label>
-                      <div class="col-sm-7">
-                        <input readonly type="text" class="form-control" id="patientRegistrationNumber"  name="patientRegistrationNumber" [(ngModel)]="searchedAdmission.patientRegistrationNumber">
-                      </div>
+              </div>
+              <div class="form-group row">
+                <label for="patientRegistrationNumber" class="col-sm-4 col-form-label">Patient Reg. No</label>
+                <div class="col-sm-8 input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text col" id="basic-addon3">PAT/</span>
                   </div>
-
-                  <div class="form-group row">
-                      <label for="patientName" class="col-sm-5 col-form-label">Patient Name</label>
-                      <div class="col-sm-7">
-                        <input readonly type="text"  class="form-control" id="patientName" name="patientName" readonly placeholder="" [(ngModel)]="searchedAdmission.name" >
-                      </div>
-                  </div>
-
-                  <div class="form-group row">
-                      <label for="appointmentNumber" class="col-sm-6 col-form-label">Appointment No. (If any)</label>
-                      <div class="col-sm-6">
-                        <input readonly type="text"  class="form-control" id="appointmentNumber" name="appointmentNumber" readonly placeholder="" [(ngModel)]="searchedAdmission.appointmentNumber">
-                      </div>
-                  </div>
-
-                  <div class="form-group row">
-                      <label for="admissionDate" class="col-sm-5 col-form-label">Date of Admission</label>
-                      <div class="col-sm-7">
-                        <input readonly type="text"  class="form-control" id="admissionDate" name="admissionDate" readonly placeholder="" [(ngModel)]="searchedAdmission.admissionDate">
-                      </div>
-                  </div>
-
-                  <div class="form-group row">
-                      <label for="room" class="col-sm-5 col-form-label">Room</label>
-                      <div class="col-sm-7">
-                        <input readonly  type="text"  class="form-control" id="room" name="room" readonly placeholder="" [(ngModel)]="searchedAdmission.room">
-                      </div>
-                  </div>
-
-                  <div class="form-group row">
-                      <label for="causeOfAdmission" class="col-sm-5 col-form-label">Cause of Admission</label>
-                      <div class="col-sm-7">
-                        <input readonly type="text" class="form-control" id="causeOfAdmission"  name="causeOfAdmission"[(ngModel)]="searchedAdmission.cause">
-                      </div>
-                  </div>
-
-
-                  <div class="form-group row" style="margin-left: 150px; margin-top: 0px;">
-                      <button (click)="onDischargePatient()" type="submit" class="btn btn-info">Discharge Patient</button>
-                  </div>
-              </form>
+                  <input (keyup)="onSearchPatient($event)" type="number" ngModel #patientRegistrationNumber="ngModel" class="form-control col" id="patientRegistrationNumber"  name="patientRegistrationNumber" placeholder="Enter Patient Registration Number" required>
+                </div>
+                <div  style="margin-bottom: 0px; margin-left: 204px"class="alert alert-danger" *ngIf="!patientRegistrationNumber.valid && patientRegistrationNumber.touched && !patientName.valid">Enter Valid Registration Number</div>
               </div>
 
-             <!-- End Admit Patient -->
-
-             <!-- Start - Current Admissions -->
-              <div class="col-sm-6 border border-secondary" style="padding-top: 10px">
-                  <p class="font-weight-bold">Current Patient Admissions</p>
-                  <div class="form-group row">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">Admission No.</th>
-                            <th scope="col">Room Number</th>
-                            <th scope="col">Room Type</th>
-                            <th scope="col">Patient No.</th>
-                            <th scope="col">Date Admitted</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- <tr *ngFor="let room of rooms">
-                            <td>{{room.roomNumber}}</td>
-                            <td>{{room.type}}</td>
-                            <td>{{room.status}}</td>
-                          </tr> -->
-                          <tr *ngFor="let element of currentAdmissions">
-                            <td>ADM/{{element.admissionNumber}}</td>
-                            <td>{{element.room[0].roomNumber}}</td>
-                            <td>{{element.room[0].type}}</td>
-                            <td>{{element.patientRegistrationNumber}}</td>
-                            <td>{{element.admissionDate}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+              <div class="form-group row">
+                <label for="patientName" class="col-sm-4 col-form-label">Patient Name</label>
+                <div class="col-sm-8">
+                  <input type="text" ngModel #patientName="ngModel" class="form-control" id="patientName" name="patientName" readonly placeholder="" [(ngModel)]="name" required>
+                  <div style="margin-bottom: -10px" class="alert alert-danger" *ngIf="!patientName.valid && patientRegistrationNumber.touched">Invalid Patient</div>
+                </div>
               </div>
-              <!-- End Current Admissions -->
 
+              <div class="form-group row">
+                <label for="selectAppointmentNumber" class="col-sm-4 col-form-label">Select Appointment No. (If any)</label>
+                <div class="col-sm-4" style="padding-top: 20px">
+                  <!-- <select ngModel #selectAppointmentNumber="ngModel"class="custom-select" name="selectAppointmentNumber" id="selectAppointmentNumber">
+                      <option value="">Choose...</option>
+                  </select> -->
+                  <mat-radio-group ngModel #appointmentType="ngModel" name="appointmentType">
+                    <mat-radio-button value="APP/">APP</mat-radio-button>
+                    <mat-radio-button value="eAPP/">eAPP</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class="col-sm-3" style="padding-top: 15px">
+                  <input type="number" ngModel #appointmentNumber="ngModel" class="form-control" id="appointmentNumber" name="appointmentNumber">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="selectAdmissionDate" class="col-sm-4 col-form-label" style="padding-top: 5px">Date of Admission</label>
+                <div class="col-sm-8">
+                  <mat-form-field >
+                    <input matInput ngModel #selectAdmissionDate="ngModel" name="selectAdmissionDate"[min]="" [max]="" [matDatepicker]="picker" placeholder="Choose admission date" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <div class="alert alert-danger" *ngIf="!selectAdmissionDate.valid && selectAdmissionDate.touched">Select date</div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="selecRoom" class="col-sm-4 col-form-label">Select Room</label>
+                <div class="col-sm-8">
+                  <select ngModel #selecRoom="ngModel"class="custom-select" name="selecRoom" id="selecRoom" required>
+                    <option value="">Choose...</option>
+                    <option *ngFor="let room of vacantRooms" value="{{room.roomNumber}}">Room {{room.roomNumber}}</option>
+
+                  </select>
+                  <div class="alert alert-danger" *ngIf="!selecRoom.valid && selecRoom.touched">Select a room</div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="causeOfAdmission" class="col-sm-4 col-form-label">Cause of Admission</label>
+                <div class="col-sm-8">
+                  <input type="text" ngModel #causeOfAdmission="ngModel" class="form-control" id="causeOfAdmission"  name="causeOfAdmission" placeholder="Enter cause" required>
+                  <div class="alert alert-danger" *ngIf="!causeOfAdmission.valid && causeOfAdmission.touched">Invalid</div>
+                </div>
+              </div>
+
+
+              <div class="form-group row" style="margin-left: 150px; margin-top: 0px;">
+                <button type="submit" class="btn btn-success">Admit Patient</button>
+              </div>
+            </form>
           </div>
+
+          <!-- End Admit Patient -->
+
+          <!-- Start Room Availability -->
+          <div class="col-sm border border-secondary" style="padding-top: 10px">
+            <p class="font-weight-bold">Room Availability</p>
+            <div class="form-group row">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">Room Number</th>
+                  <th scope="col">Room Type</th>
+                  <th scope="col">Availability</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let room of rooms">
+                  <td>{{room.roomNumber}}</td>
+                  <td>{{room.type}}</td>
+                  <td>{{room.status}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- End Room Availability -->
+
+        </div>
       </div>
-      </mat-tab>
-     <!-- End Discharge Patient Tab -->
+    </mat-tab>
+    <!-- End Admit Patient Tab -->
 
-     <!-- Start View Admissions History Tab -->
-      <mat-tab label="View Patient Admission History">
-          <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-            <div class="" style="padding:15px 10px 20px 20px ">
-              <p class="font-weight-bold">Find Admission(s)</p>
-              <div class="form-group row border border-dark" style="padding-left: 170px; padding-top: 30px">
-                  <div class="col">
-                      <div class="form-group row">
-                        <label for="selectDate_admissionHistory" class="col-sm-5 col-form-label">Select Admission Date</label>
-                        <div class="col-sm-7" style="margin-top: -15px">
-                          <mat-form-field >
-                              <input matInput ngModel #selectDate_admissionHistory="ngModel" name="selectDate_admissionHistory"[min]="" [max]="" [matDatepicker]="picker1" placeholder="Choose a date" required>
-                              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                              <mat-datepicker #picker1></mat-datepicker>
-                            </mat-form-field>
-                            <!-- <div class="alert alert-danger" *ngIf="!appointmentDate.valid && appointmentDate.touched">Select Date</div> -->
-                        </div>
-                      </div>
+    <!-- Start Discharge Patient Tab -->
+    <mat-tab label="Discharge Patients" >
+      <div class="container" style="padding-top: 5px">
+        <div class="row">
+
+          <!-- Start Discharge Patient -->
+
+          <div class="col-sm-6 border border-secondary" style="padding-top: 10px">
+            <form>
+              <p class="font-weight-bold">Discharge Patients</p>
+              <div class="form-group row border border-secondary" style="margin-left: 10px; padding-right:10px; margin-right: 10px; padding-top: 10px; padding-bottom: 10px">
+                <label for="searchAdmissionNumber" class="col-sm-5 col-form-label">Enter Admission No.</label>
+                <div class="col-sm-5 input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text col" id="basic-addon3">ADM/</span>
                   </div>
-                  <div class="col">
-                    <button class="btn btn-success" (click)="findAdmissionsHistory(selectDate_admissionHistory.value)">Find</button>
-                  </div>
+                  <input  #searchBox type="number" class="form-control" id="searchAdmissionNumber" name="searchAdmissionNumber" required>
+                </div>
+                <button (click)="searchAdmission(searchBox.value)" type="button" class="btn btn-sm btn-outline-success col-2" style="padding-top: 5px;">Search</button>
               </div>
 
-              <div *ngIf="showTable">
-                <div class="row">
-                  <div class="col-5">
-                      <div class="form-group row">
-                        <label for="admissionDate_admissionHistory" class="col-sm-5 col-form-label">Admission Date</label>
-                        <div class="col-sm-6">
-                          <label style="padding-top: 5px" class="font-weight-bold">{{searchedDate_admissionHistory}}</label>
-                        </div>
-                      </div>
-                  </div>
+              <div class="form-group row">
+                <label for="admissionNumber" class="col-sm-5 col-form-label">Admission No</label>
+                <div class="col-sm-7">
+                  <input readonly  type="text" class="form-control" id="admissionNumber"  name="admissionNumber" [(ngModel)]="searchedAdmission.admissionNumber">
                 </div>
+              </div>
 
-                  <div class="form-group row">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">Admission No.</th>
-                            <th scope="col">Patient No</th>
-                            <th scope="col">Patient Name</th>
-                            <th scope="col">NIC</th>
-                            <th scope="col">Cause of Admission</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Discharged Date</th>
-                            <th scope="col">Room</th>
-                            <th scope="col">Room Type</th>
-                            <th scope="col">Appointment No.</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let admission of admissionHistory">
-                            <td>ADM/{{admission.admissionNumber}}</td>
-                            <td>PAT/{{admission.patientRegistrationNumber}}</td>
-                            <td>{{admission.patient[0].name.firstname}} {{admission.patient[0].name.lastname}}</td>
-                            <td>{{admission.patient[0].nic}}</td>
-                            <td>{{admission.causeofAdmission}}</td>
-                            <td>{{admission.status}}</td>
-                            <td>{{admission.dischargeDate}}</td>
-                            <td>{{admission.room[0].roomNumber}}</td>
-                            <td>{{admission.room[0].type}}</td>
-                            <td>{{admission.appointmentNmber}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                  </div>
+              <div class="form-group row">
+                <label for="patientRegistrationNumber" class="col-sm-5 col-form-label">Patient Reg. No</label>
+                <div class="col-sm-7">
+                  <input readonly type="text" class="form-control" id="patientRegistrationNumber"  name="patientRegistrationNumber" [(ngModel)]="searchedAdmission.patientRegistrationNumber">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="patientName" class="col-sm-5 col-form-label">Patient Name</label>
+                <div class="col-sm-7">
+                  <input readonly type="text"  class="form-control" id="patientName" name="patientName" readonly placeholder="" [(ngModel)]="searchedAdmission.name" >
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="appointmentNumber" class="col-sm-6 col-form-label">Appointment No. (If any)</label>
+                <div class="col-sm-6">
+                  <input readonly type="text"  class="form-control" id="appointmentNumber" name="appointmentNumber" readonly placeholder="" [(ngModel)]="searchedAdmission.appointmentNumber">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="admissionDate" class="col-sm-5 col-form-label">Date of Admission</label>
+                <div class="col-sm-7">
+                  <input readonly type="text"  class="form-control" id="admissionDate" name="admissionDate" readonly placeholder="" [(ngModel)]="searchedAdmission.admissionDate">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="room" class="col-sm-5 col-form-label">Room</label>
+                <div class="col-sm-7">
+                  <input readonly  type="text"  class="form-control" id="room" name="room" readonly placeholder="" [(ngModel)]="searchedAdmission.room">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="causeOfAdmission" class="col-sm-5 col-form-label">Cause of Admission</label>
+                <div class="col-sm-7">
+                  <input readonly type="text" class="form-control" id="causeOfAdmission"  name="causeOfAdmission"[(ngModel)]="searchedAdmission.cause">
+                </div>
+              </div>
+
+
+              <div class="form-group row" style="margin-left: 150px; margin-top: 0px;">
+                <button (click)="onDischargePatient()" type="submit" class="btn btn-info">Discharge Patient</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- End Admit Patient -->
+
+          <!-- Start - Current Admissions -->
+          <div class="col-sm-6 border border-secondary" style="padding-top: 10px">
+            <p class="font-weight-bold">Current Patient Admissions</p>
+            <div class="form-group row">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">Admission No.</th>
+                  <th scope="col">Room Number</th>
+                  <th scope="col">Room Type</th>
+                  <th scope="col">Patient No.</th>
+                  <th scope="col">Date Admitted</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- <tr *ngFor="let room of rooms">
+                  <td>{{room.roomNumber}}</td>
+                  <td>{{room.type}}</td>
+                  <td>{{room.status}}</td>
+                </tr> -->
+                <tr *ngFor="let element of currentAdmissions">
+                  <td>ADM/{{element.admissionNumber}}</td>
+                  <td>{{element.room[0].roomNumber}}</td>
+                  <td>{{element.room[0].type}}</td>
+                  <td>{{element.patientRegistrationNumber}}</td>
+                  <td>{{element.admissionDate}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- End Current Admissions -->
+
+        </div>
+      </div>
+    </mat-tab>
+    <!-- End Discharge Patient Tab -->
+
+    <!-- Start View Admissions History Tab -->
+    <mat-tab label="View Patient Admission History">
+      <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+        <div class="" style="padding:15px 10px 20px 20px ">
+          <p class="font-weight-bold">Find Admission(s)</p>
+          <div class="form-group row border border-dark" style="padding-left: 170px; padding-top: 30px">
+            <div class="col">
+              <div class="form-group row">
+                <label for="selectDate_admissionHistory" class="col-sm-5 col-form-label">Select Admission Date</label>
+                <div class="col-sm-7" style="margin-top: -15px">
+                  <mat-form-field >
+                    <input matInput ngModel #selectDate_admissionHistory="ngModel" name="selectDate_admissionHistory"[min]="" [max]="" [matDatepicker]="picker1" placeholder="Choose a date" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                  <!-- <div class="alert alert-danger" *ngIf="!appointmentDate.valid && appointmentDate.touched">Select Date</div> -->
+                </div>
               </div>
             </div>
-            </cdk-virtual-scroll-viewport>
-      </mat-tab>
+            <div class="col">
+              <button class="btn btn-success" (click)="findAdmissionsHistory(selectDate_admissionHistory.value)">Find</button>
+            </div>
+          </div>
+
+          <div *ngIf="showTable">
+            <div class="row">
+              <div class="col-5">
+                <div class="form-group row">
+                  <label for="admissionDate_admissionHistory" class="col-sm-5 col-form-label">Admission Date</label>
+                  <div class="col-sm-6">
+                    <label style="padding-top: 5px" class="font-weight-bold">{{searchedDate_admissionHistory}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">Admission No.</th>
+                  <th scope="col">Patient No</th>
+                  <th scope="col">Patient Name</th>
+                  <th scope="col">NIC</th>
+                  <th scope="col">Cause of Admission</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Discharged Date</th>
+                  <th scope="col">Room</th>
+                  <th scope="col">Room Type</th>
+                  <th scope="col">Appointment No.</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let admission of admissionHistory">
+                  <td>ADM/{{admission.admissionNumber}}</td>
+                  <td>PAT/{{admission.patientRegistrationNumber}}</td>
+                  <td>{{admission.patient[0].name.firstname}} {{admission.patient[0].name.lastname}}</td>
+                  <td>{{admission.patient[0].nic}}</td>
+                  <td>{{admission.causeofAdmission}}</td>
+                  <td>{{admission.status}}</td>
+                  <td>{{admission.dischargeDate}}</td>
+                  <td>{{admission.room[0].roomNumber}}</td>
+                  <td>{{admission.room[0].type}}</td>
+                  <td>{{admission.appointmentNmber}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </mat-tab>
     <!-- End View Admissions Hostory Tab -->
 
-    </mat-tab-group>
+  </mat-tab-group>
 
-  </div>
+</div>

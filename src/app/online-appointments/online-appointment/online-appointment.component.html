@@ -31,7 +31,7 @@
                </div>
               </div>
               <br>
-              <mat-card class="border border-secondary" *ngFor="let doctor of doctor" style="margin-bottom:10px; margin-right: 5px;">
+              <mat-card class="border border-secondary" *ngFor="let doctor of doctorDetails" style="margin-bottom:10px; margin-right: 5px;">
                   <div class="row">
                           <div class="col-sm-8">
 
@@ -51,9 +51,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                  <label for="slmcRegNo" class="col-sm-5 col-form-label">SLMC Registration Number</label>
+                                  <label for="slmcRegNo" class="col-sm-5 col-form-label">Registration Number</label>
                                   <div class="col-sm-7">
-                                    <input readonly type="text"  class="form-control" id="slmcRegNo" name="slmcRegNo" readonly placeholder="" value="{{doctor.SLMCRegNo}}">
+                                    <input readonly type="text"  class="form-control" id="RegNo" name="RegNo" readonly placeholder="" value="{{doctor.doctorRegistrationNumber}}">
                                   </div>
                                 </div>
 
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="col-sm-4" style="padding-top: 50px; padding-left: 60px">
-                          <button type="buttton" matStepperNext class="btn btn-success" (click)="onBookNow(doctor.doctorRegistrationNumber,doctor.name.firstname,doctor.name.lastname)">Book Now<i class="fa fa-arrow-right" style="padding-left: 10px"></i></button>
+                          <button type="buttton" matStepperNext class="btn btn-success" (click)="onBookNow(doctor)">Book Now<i class="fa fa-arrow-right" style="padding-left: 10px"></i></button>
                         </div>
 
                   </div>
@@ -79,7 +79,7 @@
                           <div class="form-group row">
                             <label for="doctorName" class="col-sm-5 col-form-label">Doctor Name</label>
                             <div class="col-sm-7">
-                              <input readonly type="text"  class="form-control" id="doctorName" name="doctorName" readonly placeholder="" value="Dr. {{doctor.name.firstname}} {{doctor.name.lastname}}">
+                              <input readonly type="text"  class="form-control" id="doctorName" name="doctorName" readonly placeholder="" value="Dr. {{doctor.name.firstName}} {{doctor.name.lastName}}">
                             </div>
                           </div>
 
@@ -101,7 +101,7 @@
                   </div>
 
                   <div class="col-sm-4" style="padding-top: 50px; padding-left: 60px">
-                    <button type="buttton" matStepperNext class="btn btn-success" (click)="onBookNow(doctor.doctorRegistrationNumber,doctor.name.firstname,doctor.name.lastname)">Book Now<i class="fa fa-arrow-right" style="padding-left: 10px"></i></button>
+                    <button type="buttton" matStepperNext class="btn btn-success" (click)="onBookNow(doctor)">Book Now<i class="fa fa-arrow-right" style="padding-left: 10px"></i></button>
                   </div>
 
             </div>
@@ -256,39 +256,40 @@
                   <label for="district">District</label>
                   <select ngModel #patientDistrict="ngModel"class="custom-select" name="district" id="district" required>
                       <option value="">Choose...</option>
-                      <option value="Ampara">Ampara</option>
-                      <option value="Anuradhapura">Anuradhapura</option>
-                      <option value="Badulla">Badulla</option>
-                      <option value="Batticaloa">Batticaloa</option>
-                      <option value="Colombo">Colombo</option>
-                      <option value="Galle">Galle</option>
-                      <option value="Gampaha">Gampaha</option>
-                      <option value="Hambantota">Hambantota</option>
-                      <option value="Jaffna">Jaffna</option>
-                      <option value="Kaluthara">Kaluthara</option>
-                      <option value="Kandy">Kandy</option>
-                      <option value="Kegalle">Kegalle</option>
-                      <option value="Kilinochchi">Kilinochchi</option>
-                      <option value="Kurunegala">Kurunegala</option>
-                      <option value="Mannar">Mannar</option>
-                      <option value="Mathara">Mathara</option>
-                      <option value="Monaragala">Monaragala</option>
-                      <option value="Mullaitivu">Mullaitivu</option>
-                      <option value="Nuwara Eliya">Nuwara Eliya</option>
-                      <option value="Polonnaruwa">Polonnaruwa</option>
-                      <option value="Puttalam">Puttalam</option>
-                      <option value="Ratnapura">Ratnapura</option>
-                      <option value="Trincomalee">Trincomalee</option>
-                      <option value="Vavuniya">Vavuniya</option>
+                      <option value="Ariana">Ariana</option>
+                      <option value="Beja">Beja</option>
+                      <option value="BenArous">BenArous</option>
+                      <option value="Bizerte">Bizerte</option>
+                      <option value="Gabes">Gabes</option>
+                      <option value="Gafsa">Gafsa</option>
+                      <option value="Jendouba">Jendouba</option>
+                      <option value="Kairouan">Kairouan</option>
+                      <option value="Kasserine">Kasserine</option>
+                      <option value="Kebili">Kebili</option>
+                      <option value="Kef">Kef</option>
+                      <option value="Mahdia">Mahdia</option>
+                      <option value="Manouba">Manouba</option>
+                      <option value="Medenine">Medenine</option>
+                      <option value="Monastir">Monastir</option>
+                      <option value="Nabeul">Nabeul</option>
+                      <option value="Sfax">Sfax</option>
+                      <option value="SidiBouzid">SidiBouzid</option>
+                      <option value="Siliana">Siliana</option>
+                      <option value="Sousse">Sousse</option>
+                      <option value="Tataouine">Tataouine</option>
+                      <option value="Tozeur">Tozeur</option>
+                      <option value="Tunis">Tunis</option>
+                      <option value="Zaghouan">Zaghouan</option>
                     </select>
                     <div style="font-size: 13.5px;"class="alert alert-danger" *ngIf="!patientDistrict.valid && patientDistrict.touched">Select a district</div>
                 </div>
           </div>
         <!-- End - Address, City, District -->
-       <div style="padding-left: 70px; padding-top: 20px"> <button type="submit"class="btn btn-primary">Make Online Appointment</button></div>
+       <div style="padding-left: 70px; padding-top: 20px"> <button type="submit"class="btn btn-primary">Ask For Appointment</button></div>
       </form>
       </div>
 
     </mat-step>
   </mat-horizontal-stepper>
 </div>
+
